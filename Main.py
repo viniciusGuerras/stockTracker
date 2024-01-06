@@ -8,11 +8,11 @@ import regex as re
 from bs4 import BeautifulSoup
 import time
 
-eyesOn = ["GOGL34", "GOGL35", "PETR4", "TSLA", "VALE3", "AGRO3", "AMER3", "BBAS3"]
+
+eyesOn = ["GOGL34", "GOGL35", "PETR4","TSLA","VALE3", "AGRO3", "AMER3", "BBAS3"]
 
 driver = webdriver.Chrome()
 counter = 0
-
 
 for search in eyesOn:
     driver.get("https://google.com")    
@@ -43,7 +43,8 @@ for search in eyesOn:
 
     all_dates = driver.find_elements(By.CLASS_NAME, "VfPpkd-YVzG2b")
     all_dates[1].click()
-    
+
+    time.sleep(3)    
     second_page_source = driver.page_source
     second_soup = BeautifulSoup(second_page_source, 'html.parser')
 
@@ -57,7 +58,7 @@ for search in eyesOn:
     
     print(f"from 5 days ago: {changesFrom5days}")
 
-    driver.save_screenshot("graph" + str(counter) + ".png")
+    driver.save_screenshot("pictures/graph" + str(counter) + ".png")
     counter += 1
 
 driver.quit()
